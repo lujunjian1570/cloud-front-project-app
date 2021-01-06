@@ -1,0 +1,11 @@
+build/*.js
+src/assets
+public
+dist
+/tests/unit/coverage/
+/tests/e2e/reports/
+unpackage
+node_modules
+# 忽略uni-app官方的组件库错误和警告
+src/components/uni-**
+src/pages/demo/list/css/uni.css

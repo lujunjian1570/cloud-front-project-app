@@ -1,0 +1,22 @@
+<template>
+	<div class="wrap">
+		<text>
+			dsfgsd电风扇
+		</text>
+	</div>
+</template>
+
+<script>
+	export default {
+		onLoad() {
+			this.$utils.showToast('sdfds')
+		}
+		
+	}
+</script>
+
+<style>
+.wrap{
+	border-radius: 20rpx;
+}
+</style>

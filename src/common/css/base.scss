@@ -1,0 +1,43 @@
+/**
+ * @Author: Ljj
+ * @Desctription: 基本样式
+ * @Date: 2020-8-4 14:59:45
+ */
+/* 引入uview样式 */
+@import "uview-ui/index.scss";
+/* #ifndef APP-PLUS-NVUE */
+/* 引入iconfont */
+page{
+  height: 100%;
+  word-break: break-all;
+  background-color: $u-bg-color;
+}
+.clamp{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+.clamp2{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/* #endif */
+/* #ifdef APP-PLUS-NVUE */
+.iconfont{
+  font-family: iconfont;
+}
+/* #endif */
+.container{
+  padding: 0 28rpx;
+}
+.pb98{
+  padding-bottom: 98rpx;
+}
+.mt20{
+  margin-top: 20rpx;
+}

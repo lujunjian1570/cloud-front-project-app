@@ -1,0 +1,64 @@
+<template>
+	<view class="">
+		<nav-bar title="nvue页面" leftIcon="back" />
+		<view class="container">
+			<text>测试nvue和vue页面通讯</text>
+			<textarea class="input-text" :value="value" @input="inputChange" style="margin-top: 20px;" />
+			<button type="primary" @click="funcGo" style="margin-top: 20px;">跳转并传递数据</button>
+			<text class="mt20">nvue页面测试iconfont</text>
+			<text class="iconfont">&#xe613;</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	// #ifdef APP-NVUE
+	var domModule = weex.requireModule('dom');
+	domModule.addRule('fontFace', {
+		'fontFamily': "iconfont",
+		// 'src': "url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAUgAAsAAAAAClQAAATUAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqHeIZMATYCJAMUCwwABCAFhG0HQRvRCFGUTk6P7GfguE6zmc0sXc7HbWVtzTlTX1VVVVszq84IqmXr2d27j8GBClFR+OxBISSKbBwKFMpQHiXwWaPPt1/Ld4BGZfyxPMVlhX4hf5ezk5+j8XW6SlXIVrgO5lVJZ5msqBfl9KAeuIJfR7R3P4CvnRwwR/+fY8ar55GW32ZzyQiusOlowAOKvEyLAj29A4oW1Ftk90CsZx9PoGvVROvs7uUdQ4W+LBDXWRJgmDAoGGxoq2tg2yJegKB2eqJu49l7+fizH0OSKtNPdHF1jLH5lDqUR/hEYiaAdGcDuxMZe6AQj6DjWieQ7XmKLvR6XUegqy1Jn+Nki30fyucTSRak6hr/8MiKkIiaruiTmKNk4VPKYpP5lBVAyliCTfAdapAoVLW4iwXEORCvSLPW5YS2Wr6NqrgUFNMRUlgFNdHJxki9gWWjHz+OfPIkyBmLOS5m5AlmAkwN7wWy1HxeiksgosZEodZTl8EVeXhH/kQxy4bDBrFTrXQbFmeukMuR/N8tR6u7GrBvzxGv7ABAtuNPjQNAJjBmplRh5yQSwqGG8fp47IoMGiRGZ1WSWxVaEYKY0Z9QTyId8pLRElCSaVPkYmL6FFpbkfK321aUJ6wiH0e2r6eu7tJ7zA7Zjj41TiaYKXoyLZNThMf2IG96G2BGsa1TIbv1lFzmZXJFnXAFUGRHH8O+R5N5hAfqkbBz1gANTyuBHIp0jy8jsdWHGjw0ugvpLsWcMUY/a2LAaBxZD/BTdW93DWVwHW5wHuDuVKoQZ1YyLJxjKpxW0hGrs+0to+1ev1+skDsGuCu/z4BHD8N0ikuZM2B0I/ThHPhVBWbLv0eSV8FJt1oBfzuhiADmPgBOD695im5Jb4kSfSJvJMRzlIxSBhQTVyF+jrX6SnHUVytW60CX0z34HyZTI81J18iwMjmAkyOjUkjlsdQ3Cl+X1bOFS1UXPHq1FCuVDVmYLQXszueqPeiA7k6aa5mC4cZhMmjRw92RyqLVTP1VjFVEPxor+ih52/Us90Utwj3jPSuRFyXGcW56koJPlcvr31Z8X76fldBrkTmhb+jvkSyfsOm2yBJP26BWvxbkm+afj1Q5JHJbNFcsJ1qr6kJkplTEpagquVsoV/S2KK3q0Z/PYbVUnVQ1bMJyaEhLR2sIcS1ThfJ/v4j85P4tscKI+QhVyRvjl6PMzMwvRISFC/po6oEroPmI8BSgeWWQZwTNW8+yATQTnir6o53nzZ7+SJF0+x/iF3now2v0F+lrJgqopsCXp1RZ+IkKK3YURawbqyJVWwKptHJvyCMWfo0VH6Zn6q8b1aIyllAtIkhaViBrW0MUzB5Ueg6g1nYIXbvud+6ZUR1ROtjxhSCMfUMy9A7Z2A+iYH6hsvQPtXF0oOsyZPfZsxHZ2EM5MI4pvFEWSe1Ms4398ldOTmWgcbFH+2T1WZiWFlbp9D3XrF1s4M/JysyRU6noDp2My1KoUck5sllq1qznltnQDc0iqTB2SrGAYTESuiGZiKg5Z7AZZ57/FUuclAKKqSlzfmLKy0YnSzOLCoh7RV2p5lQme2eJFWMctchRokLuCBsrjYQgDTwrxyJmJm0Qa6zNyV6uqmI2vKo6x8IfpK5+6SpS5ChRRS3d3LqFmbduRqDWzZWKAQ==')"
+		'src': "url('https://at.alicdn.com/t/font_1970474_waog0dpfn2.ttf')"
+	});
+	// #endif
+	export default {
+		data() {
+			return {
+				value: '传递的内容'
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+			funcGo() {
+				uni.$on('need', (e) => {
+					uni.$emit('test', {
+						arr: this.value
+					})
+				})
+				uni.navigateTo({
+					url: '/pages/demo/communication/two'
+				});
+			},
+			inputChange(e) {
+				this.value = e.detail.value
+			}
+		}
+	}
+</script>
+
+<style>
+	.container {
+		padding: 20px;
+		font-size: 14px;
+		line-height: 24px;
+		
+	}
+	.input-text{
+		padding: 10rpx;
+		border-width: 1rpx;
+		border-color: #BEBEBE;
+		height: 120rpx;
+		border-radius: 8rpx;
+	}
+</style>
